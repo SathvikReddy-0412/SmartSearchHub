@@ -32,16 +32,16 @@ backend/.project
 backend/.factorypath
 
 # ==========================================
-# React Frontend (Vite/Node) - DSEDBD_group_project
+# React Frontend (Vite/Node) - frontend
 # ==========================================
-DSEDBD_group_project/node_modules/
-DSEDBD_group_project/dist/
-DSEDBD_group_project/dist-ssr/
-DSEDBD_group_project/*.local
-DSEDBD_group_project/npm-debug.log*
-DSEDBD_group_project/yarn-debug.log*
-DSEDBD_group_project/yarn-error.log*
-DSEDBD_group_project/.pnpm-debug.log*
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/
+frontend/*.local
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/.pnpm-debug.log*
 
 # ==========================================
 # Node.js Analytics Backend

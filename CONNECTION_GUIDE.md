@@ -1,7 +1,7 @@
 # FastAPI & React Frontend Connection Guide
 
 ## Overview
-Your application now has proper integration between the FastAPI backend (Gateway) and React frontend (DSEDBD_group_project copy).
+Your application now has proper integration between the FastAPI backend (Gateway) and React frontend (frontend).
 
 ## Backend Configuration Changes
 ✅ **FastAPI server configured to run on port 8080**
@@ -39,13 +39,13 @@ The backend will start on `http://localhost:8080`
 
 ### 3. Install Frontend Dependencies
 ```bash
-cd DSEDBD_group_project\ copy
+cd frontend
 npm install
 ```
 
 ### 4. Run React Frontend
 ```bash
-cd DSEDBD_group_project\ copy
+cd frontend
 npm run dev
 ```
 The frontend will typically start on `http://localhost:5173`

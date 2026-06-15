@@ -54,7 +54,7 @@ This monorepo is organized as follows:
 
 ```
 SmartSearchHub/
-├── DSEDBD_group_project/       # React SPA Frontend (Vite, TailwindCSS)
+├── frontend/                   # React SPA Frontend (Vite, TailwindCSS)
 │   ├── src/                    # App source (Components, Pages, Stores, Utils)
 │   ├── public/                 # Static assets
 │   ├── package.json            # Node dependencies
@@ -104,10 +104,10 @@ Make sure the following dependencies are installed locally:
 
 You will need to create local `.env` files based on the provided templates to run the services.
 
-#### 1. Frontend Configuration (`DSEDBD_group_project/`)
-Create a `.env` file inside the `DSEDBD_group_project` folder:
+#### 1. Frontend Configuration (`frontend/`)
+Create a `.env` file inside the `frontend` folder:
 ```bash
-cp DSEDBD_group_project/.env.example DSEDBD_group_project/.env
+cp frontend/.env.example frontend/.env
 ```
 Inside `.env`, configure the API Gateway location:
 ```env
@@ -188,7 +188,7 @@ Use the pre-packaged startup scripts to start each service in a separate termina
 
 4. **React Frontend SPA**:
    ```bash
-   cd DSEDBD_group_project
+   cd frontend
    npm install
    npm run dev
    ```
@@ -236,9 +236,9 @@ Deploy the Gateway as a **Web Service**:
   - `SPRING_BACKEND_URL`: (The public URL of your deployed Spring Boot Web Service on Render)
   - `NODE_JS_URL`: (The public URL of your deployed Node.js Web Service on Render)
 
-### 5. React SPA Frontend (`DSEDBD_group_project`)
+### 5. React SPA Frontend (`frontend`)
 Deploy the UI as a **Static Site**:
-- **Root Directory**: `DSEDBD_group_project`
+- **Root Directory**: `frontend`
 - **Build Command**: `npm install && npm run build`
 - **Publish Directory**: `dist`
 - **Environment Variables**:
