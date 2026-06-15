@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # SearchHub — Multi-Category Search & Filter Platform
 
 SearchHub is a full-stack, three-tier application designed to search and filter resources across multiple categories (e.g., Electronics, Education, Books, Courses, Learning Resources, and Technology Tools). 
@@ -147,3 +148,6 @@ The React frontend will spin up on **http://localhost:5173**.
 
 
 
+=======
+# SmartSearchHub
+>>>>>>> ecdbcb0d18eb1ab33763c6509b4925ce8b288a83
