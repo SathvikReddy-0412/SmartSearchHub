@@ -61,6 +61,8 @@ services:
     envVars:
       - key: PYTHON_VERSION
         value: 3.10.13
+      - key: SPRING_BOOT_URL
+        value: https://smartsearchhub-backend.onrender.com
       - key: SPRING_BACKEND_URL
         value: https://smartsearchhub-backend.onrender.com
       - key: NODE_JS_URL

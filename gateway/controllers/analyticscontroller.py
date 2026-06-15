@@ -1,11 +1,9 @@
 import requests
 from fastapi import APIRouter, HTTPException, Query, Request, Response
+from config import NODE_JS_URL
 
 router = APIRouter()
 
-import os
-
-NODE_JS_URL = os.getenv("NODE_JS_URL", "http://localhost:5001")
 
 
 def get_forward_headers(request: Request):

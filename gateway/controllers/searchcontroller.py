@@ -2,12 +2,10 @@ import requests
 from fastapi import APIRouter, HTTPException, Query, Request
 from pydantic import BaseModel
 from typing import List, Optional
+from config import SPRING_BOOT_URL
 
 router = APIRouter()
 
-import os
-
-SPRING_BOOT_URL = os.getenv("SPRING_BACKEND_URL", "http://localhost:8080")
 
 
 class SemanticSearchRequest(BaseModel):

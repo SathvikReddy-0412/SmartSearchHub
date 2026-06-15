@@ -1,9 +1,9 @@
+import os
 import requests
 import json
 import time
-
-SPRING_BOOT_URL = "http://localhost:8080"
-GATEWAY_URL = "http://localhost:8001/api"
+from config import SPRING_BOOT_URL
+GATEWAY_URL = os.environ.get("GATEWAY_URL", "http://localhost:8001/api")
 
 print("=" * 60)
 print("TESTING SPRING BOOT ENDPOINTS")

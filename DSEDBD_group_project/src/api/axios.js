@@ -1,7 +1,12 @@
 import axios from 'axios';
 
+let apiURL = import.meta.env.VITE_API_URL || 'http://localhost:8001/api';
+if (apiURL && !apiURL.endsWith('/api') && !apiURL.endsWith('/api/')) {
+  apiURL = apiURL.endsWith('/') ? `${apiURL}api` : `${apiURL}/api`;
+}
+
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8001/api', // Example backend URL
+  baseURL: apiURL,
   headers: {
     'Content-Type': 'application/json',
   },

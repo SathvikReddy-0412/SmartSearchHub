@@ -1,12 +1,10 @@
 import requests
 from fastapi import APIRouter, HTTPException, Request
 from typing import List
+from config import SPRING_BOOT_URL
 
 router = APIRouter()
 
-import os
-
-SPRING_BOOT_URL = os.getenv("SPRING_BACKEND_URL", "http://localhost:8080")
 
 
 def get_forward_headers(request: Request):

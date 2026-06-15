@@ -4,12 +4,9 @@ from models.schemas import (
     UserSignup,
     UserLogin
 )
+from config import SPRING_BOOT_URL
 
 router = APIRouter()
-
-import os
-
-SPRING_BOOT_URL = os.getenv("SPRING_BACKEND_URL", "http://localhost:8080")
 
 
 def parse_error_detail(response):

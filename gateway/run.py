@@ -1,13 +1,14 @@
+import os
 import uvicorn
 
 if __name__ == "__main__":
+    host = os.environ.get("HOST", "0.0.0.0")
+    port = int(os.environ.get("PORT", 8001))
+    reload = os.environ.get("RELOAD", "False").lower() in ("true", "1")
 
     uvicorn.run(
         "main:app",
-        host="127.0.0.1",
-        port=8001,
-        reload=True
-    )
-    #cd gateway
-#source venv_mac/bin/activate
-#python -m uvicorn main:app --reload --port 8001
+        host=host,
+        port=port,
+        reload=reload
+    )
