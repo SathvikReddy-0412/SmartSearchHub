@@ -69,12 +69,15 @@ services:
         value: https://smartsearchhub-nodejs.onrender.com
 
   # 4. React Frontend Static Site
-  - type: web
+  - type: static
     name: smartsearchhub-frontend
-    runtime: static
     rootDir: frontend
     buildCommand: npm install && npm run build
     staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
     envVars:
       - key: VITE_API_URL
         value: https://smartsearchhub-gateway.onrender.com/api
