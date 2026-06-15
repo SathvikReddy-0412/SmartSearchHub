@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import { useTheme } from './hooks/useTheme';
 import { useAuthStore } from './store/useAuthStore';
+import { useCatalogStore } from './store/useCatalogStore';
 import MainLayout from './layouts/MainLayout';
 import AdminLayout from './layouts/AdminLayout';
 
@@ -15,12 +16,13 @@ import Profile from './pages/Profile';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import NotFound from './pages/NotFound';
-import ProjectArchitecture from './pages/ProjectArchitecture';
 
+import AdminOverview from './pages/admin/AdminOverview';
 import AdminUsers from './pages/admin/AdminUsers';
 import AdminProducts from './pages/admin/AdminProducts';
 import AdminCourses from './pages/admin/AdminCourses';
 import AdminCategories from './pages/admin/AdminCategories';
+import AdminAnalytics from './pages/admin/AdminAnalytics';
 
 const ProtectedRoute = () => {
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
@@ -53,10 +55,12 @@ const HomeEntry = () => {
 function App() {
   useTheme();
   const checkAuth = useAuthStore((s) => s.checkAuth);
+  const fetchCatalogData = useCatalogStore((s) => s.fetchCatalogData);
 
   useEffect(() => {
     checkAuth();
-  }, [checkAuth]);
+    fetchCatalogData();
+  }, [checkAuth, fetchCatalogData]);
 
   return (
     <BrowserRouter>
@@ -72,7 +76,6 @@ function App() {
           <Route path="products" element={<Products />} />
           <Route path="categories" element={<Categories />} />
           <Route path="items/:id" element={<ItemDetails />} />
-          <Route path="architecture" element={<ProjectArchitecture />} />
 
           <Route element={<ProtectedRoute />}>
             <Route path="dashboard" element={<Dashboard />} />
@@ -89,11 +92,12 @@ function App() {
 
         <Route element={<AdminRoute />}>
           <Route path="/admin" element={<AdminLayout />}>
-            <Route index element={<Navigate to="users" replace />} />
+            <Route index element={<AdminOverview />} />
             <Route path="users" element={<AdminUsers />} />
             <Route path="products" element={<AdminProducts />} />
             <Route path="courses" element={<AdminCourses />} />
             <Route path="categories" element={<AdminCategories />} />
+            <Route path="analytics" element={<AdminAnalytics />} />
           </Route>
         </Route>
       </Routes>

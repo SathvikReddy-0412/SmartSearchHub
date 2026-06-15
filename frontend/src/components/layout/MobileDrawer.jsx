@@ -4,7 +4,6 @@ import {
   X,
   Home,
   Search,
-  Package,
   Layers,
   LayoutDashboard,
   User,
@@ -16,10 +15,8 @@ import { PLATFORM_NAME } from '../../utils/constants';
 
 const NAV_LINKS = [
   { icon: Home, label: 'Home', to: '/' },
-  { icon: Search, label: 'Search Platform', to: '/search' },
-  { icon: Package, label: 'Products', to: '/products' },
+  { icon: Search, label: 'Search', to: '/search' },
   { icon: Layers, label: 'Categories', to: '/categories' },
-  { icon: Layers, label: 'Architecture', to: '/architecture' },
   { icon: LayoutDashboard, label: 'Dashboard', to: '/dashboard', protected: true },
   { icon: User, label: 'Profile', to: '/profile', protected: true },
 ];

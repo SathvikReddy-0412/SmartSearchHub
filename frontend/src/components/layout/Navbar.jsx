@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   Search,
   Menu,
-  Package,
   LayoutDashboard,
   ChevronDown,
   LogOut,
@@ -23,10 +22,8 @@ import { useCatalogStore } from '../../store/useCatalogStore';
 
 const NAV_LINKS = [
   { label: 'Home', to: '/', icon: Home },
-  { label: 'Search Platform', to: '/search', icon: Search },
-  { label: 'Products', to: '/products', icon: Package },
+  { label: 'Search', to: '/search', icon: Search },
   { label: 'Categories', to: '/categories', icon: Layers },
-  { label: 'Architecture', to: '/architecture', icon: Layers },
   { label: 'Dashboard', to: '/dashboard', icon: LayoutDashboard, protected: true },
   { label: 'Profile', to: '/profile', icon: Settings, protected: true },
 ];
@@ -81,12 +78,7 @@ const Navbar = ({ onMobileMenuOpen }) => {
     setShowCatMenu(false);
   };
 
-  const visibleLinks = NAV_LINKS.filter((link) => {
-    if (link.protected && !isAuthenticated) return false;
-    if (link.label === 'Categories') return false;
-    if (link.label === 'Dashboard' && user?.role !== 'ADMIN') return false;
-    return true;
-  });
+  const visibleLinks = NAV_LINKS.filter((link) => !link.protected || isAuthenticated);
 
   const dashboardPath = user?.role === 'ADMIN' ? '/admin' : '/dashboard';
 
@@ -131,7 +123,37 @@ const Navbar = ({ onMobileMenuOpen }) => {
             })}
           </div>
 
-
+          <div className="relative hidden lg:block">
+            <button
+              onClick={() => setShowCatMenu(!showCatMenu)}
+              className="btn-ghost flex items-center gap-1.5 text-sm font-semibold"
+            >
+              Quick Categories{' '}
+              <ChevronDown
+                className={`w-4 h-4 transition-transform ${showCatMenu ? 'rotate-180' : ''}`}
+              />
+            </button>
+            <AnimatePresence>
+              {showCatMenu && (
+                <motion.div
+                  initial={{ opacity: 0, y: -8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  className="absolute right-0 top-full mt-2 w-52 bg-card border border-border rounded-2xl shadow-xl p-2 z-50 max-h-64 overflow-y-auto"
+                >
+                  {catalogCategories.map((cat) => (
+                    <button
+                      key={cat.id}
+                      onClick={() => handleCategoryClick(cat.name)}
+                      className="w-full text-left px-3 py-2.5 text-sm font-medium rounded-xl hover:bg-primary/10 hover:text-primary transition-colors"
+                    >
+                      {cat.icon} {cat.name}
+                    </button>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
 
           <form onSubmit={handleSearch} ref={searchRef} className="flex-1 max-w-md hidden md:flex">
             <div className="relative w-full">

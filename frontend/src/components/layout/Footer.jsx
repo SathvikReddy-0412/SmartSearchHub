@@ -40,7 +40,6 @@ const Footer = () => {
               {[
                 ['Search Platform', '/search'],
                 ['Categories', '/categories'],
-                ['Architecture', '/architecture'],
                 ['Dashboard', '/dashboard'],
               ].map(([label, path]) => (
                 <li key={label}>
@@ -110,7 +109,7 @@ const Footer = () => {
         </div>
 
         <div className="mt-10 pt-6 border-t border-border flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-muted-foreground">
-          <p>© 2026 {PLATFORM_NAME}. All rights reserved.</p>
+          <p>© 2026 {PLATFORM_NAME} • © Sathvik, Vinayak, mohan krishna. All rights reserved.</p>
           <div className="flex gap-4">
             {['Privacy Policy', 'Terms of Service'].map((item) => (
               <a key={item} href="#" className="hover:text-primary transition-colors">
