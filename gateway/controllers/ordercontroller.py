@@ -17,7 +17,7 @@ class OrderCreateRequest(BaseModel):
 
 
 class PaymentProcessRequest(BaseModel):
-    orderId: Optional = None
+    orderId: Optional[str] = None
     cardNumber: str
     expiryDate: str
     cvv: str
