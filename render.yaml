@@ -75,4 +75,4 @@ services:
     staticPublishPath: dist
     envVars:
       - key: VITE_API_URL
-        value: http://localhost:8001/api # Will be replaced dynamically in Render dashboard with Gateway URL + /api
+        value: https://smartsearchhub-gateway.onrender.com/api
