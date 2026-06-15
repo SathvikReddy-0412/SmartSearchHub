@@ -1,0 +1,81 @@
+# ==========================================
+# System Files
+# ==========================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ==========================================
+# Java / Spring Boot Backend
+# ==========================================
+backend/target/
+backend/bin/
+backend/*.class
+backend/*.jar
+backend/*.war
+backend/*.zip
+backend/*.tar.gz
+backend/*.rar
+backend/hs_err_pid*
+
+# IDE files
+backend/.idea/
+backend/*.iml
+backend/.settings/
+backend/.classpath
+backend/.project
+backend/.factorypath
+
+# ==========================================
+# React Frontend (Vite/Node)
+# ==========================================
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/
+frontend/*.local
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/.pnpm-debug.log*
+
+# Ignore environment variables but allow tracking template if any
+frontend/.env
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+
+# ==========================================
+# FastAPI Gateway (Python)
+# ==========================================
+**/__pycache__/
+**/*.py[cod]
+**/*$py.class
+gateway/.pytest_cache/
+gateway/.coverage
+gateway/htmlcov/
+gateway/.env
+
+# Virtual environments
+**/venv/
+**/venv_mac/
+**/env/
+**/ENV/
+gateway/env.bak/
+gateway/venv.bak/
+
+# ==========================================
+# Local Startup Scripts
+# ==========================================
+start_frontend.sh
+start_frontend.bat
+start_gateway.sh
+start_gateway.bat
+start_spring_backend.sh
+start_spring_backend.bat
+
