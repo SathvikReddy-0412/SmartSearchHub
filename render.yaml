@@ -64,11 +64,11 @@ services:
       - key: PYTHON_VERSION
         value: 3.10.13
       - key: SPRING_BOOT_URL
-        value: https://smartsearchhub-backend.onrender.com
+        value: http://smartsearchhub-backend:8080
       - key: SPRING_BACKEND_URL
-        value: https://smartsearchhub-backend.onrender.com
+        value: http://smartsearchhub-backend:8080
       - key: NODE_JS_URL
-        value: https://smartsearchhub-nodejs.onrender.com
+        value: http://smartsearchhub-nodejs:5001
 
   # 4. React Frontend Static Site
   - type: static
