@@ -32,23 +32,23 @@ backend/.project
 backend/.factorypath
 
 # ==========================================
-# React Frontend (Vite/Node)
+# React Frontend (Vite/Node) - DSEDBD_group_project
 # ==========================================
-frontend/node_modules/
-frontend/dist/
-frontend/dist-ssr/
-frontend/*.local
-frontend/npm-debug.log*
-frontend/yarn-debug.log*
-frontend/yarn-error.log*
-frontend/.pnpm-debug.log*
+DSEDBD_group_project/node_modules/
+DSEDBD_group_project/dist/
+DSEDBD_group_project/dist-ssr/
+DSEDBD_group_project/*.local
+DSEDBD_group_project/npm-debug.log*
+DSEDBD_group_project/yarn-debug.log*
+DSEDBD_group_project/yarn-error.log*
+DSEDBD_group_project/.pnpm-debug.log*
 
-# Ignore environment variables but allow tracking template if any
-frontend/.env
-frontend/.env.local
-frontend/.env.development.local
-frontend/.env.test.local
-frontend/.env.production.local
+# ==========================================
+# Node.js Analytics Backend
+# ==========================================
+Nodejs/node_modules/
+Nodejs/.env*
+Nodejs/npm-debug.log*
 
 # ==========================================
 # FastAPI Gateway (Python)
@@ -59,7 +59,7 @@ frontend/.env.production.local
 gateway/.pytest_cache/
 gateway/.coverage
 gateway/htmlcov/
-gateway/.env
+gateway/.env*
 
 # Virtual environments
 **/venv/
@@ -68,6 +68,18 @@ gateway/.env
 **/ENV/
 gateway/env.bak/
 gateway/venv.bak/
+
+# ==========================================
+# Global Environment Files (Safety Catch-All)
+# ==========================================
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+**/.env
+**/.env.local
+**/.env.*.local
 
 # ==========================================
 # Local Startup Scripts
