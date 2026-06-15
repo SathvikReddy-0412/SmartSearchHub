@@ -49,7 +49,7 @@ services:
       - key: PORT
         value: 5001
       - key: MONGO_URI
-        sync: false  # You will be prompted to paste your MongoDB Atlas connection URI
+        value: mongodb+srv://Admin:SearchHub123@cluster0.svg74nb.mongodb.net/searchhub_analytics?retryWrites=true&w=majority&appName=Cluster0
 
   # 3. FastAPI Gateway Service
   - type: web
@@ -70,10 +70,9 @@ services:
   # 4. React Frontend Static Site
   - type: static
     name: smartsearchhub-frontend
-    runtime: static
     rootDir: DSEDBD_group_project
     buildCommand: npm install && npm run build
-    publishDir: dist
+    staticPublishPath: dist
     envVars:
       - key: VITE_API_URL
-        sync: false  # You will be prompted to input your FastAPI Gateway public URL (e.g. https://smartsearchhub-gateway.onrender.com/api)
+        value: http://localhost:8001/api # Will be replaced dynamically in Render dashboard with Gateway URL + /api
