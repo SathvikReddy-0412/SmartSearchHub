@@ -10,7 +10,6 @@ import com.searchfilter.platform.repository.ProductRepository;
 import com.searchfilter.platform.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -23,19 +22,16 @@ public class DatabaseSeeder implements CommandLineRunner {
     private final ProductRepository productRepository;
     private final CourseRepository courseRepository;
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
 
     @Autowired
     public DatabaseSeeder(CategoryRepository categoryRepository,
                           ProductRepository productRepository,
                           CourseRepository courseRepository,
-                          UserRepository userRepository,
-                          PasswordEncoder passwordEncoder) {
+                          UserRepository userRepository) {
         this.categoryRepository = categoryRepository;
         this.productRepository = productRepository;
         this.courseRepository = courseRepository;
         this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
