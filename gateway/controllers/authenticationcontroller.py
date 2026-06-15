@@ -12,6 +12,28 @@ import os
 SPRING_BOOT_URL = os.getenv("SPRING_BACKEND_URL", "http://localhost:8080")
 
 
+def parse_error_detail(response):
+    try:
+        # Check if the content type is JSON
+        if "application/json" in response.headers.get("Content-Type", "").lower():
+            json_data = response.json()
+            return json_data.get("message") or json_data.get("detail") or json_data.get("error") or "Request failed"
+    except Exception:
+        pass
+    
+    # Fallback to status-code-based messages instead of raw HTML
+    if response.status_code == 502:
+        return "Bad Gateway: Backend service is currently unavailable"
+    elif response.status_code == 504:
+        return "Gateway Timeout: Backend service took too long to respond"
+    elif response.status_code == 401:
+        return "Unauthorized: Invalid email or password"
+    elif response.status_code == 403:
+        return "Forbidden: Access denied"
+    else:
+        return f"Backend error: Received status code {response.status_code}"
+
+
 @router.post("/register")
 def register(user: UserSignup):
     payload = {
@@ -28,10 +50,7 @@ def register(user: UserSignup):
                 "user": response.json()
             }
         else:
-            try:
-                detail = response.json().get("message", "Registration failed")
-            except Exception:
-                detail = response.text or "Registration failed"
+            detail = parse_error_detail(response)
             raise HTTPException(status_code=response.status_code, detail=detail)
     except requests.exceptions.RequestException as e:
         raise HTTPException(
@@ -56,10 +75,8 @@ def login(user: UserLogin):
                 "user": resp_data.get("user")
             }
         else:
-            raise HTTPException(
-                status_code=response.status_code,
-                detail="Invalid email or password"
-            )
+            detail = parse_error_detail(response)
+            raise HTTPException(status_code=response.status_code, detail=detail)
     except requests.exceptions.RequestException as e:
         raise HTTPException(
             status_code=503,
@@ -81,10 +98,7 @@ def get_profile(request: Request):
                 "user": response.json()
             }
         else:
-            try:
-                detail = response.json().get("detail") or response.json().get("message")
-            except Exception:
-                detail = "Failed to fetch profile"
+            detail = parse_error_detail(response)
             raise HTTPException(status_code=response.status_code, detail=detail)
     except requests.exceptions.RequestException as e:
         raise HTTPException(
