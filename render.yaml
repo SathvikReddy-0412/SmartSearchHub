@@ -68,8 +68,9 @@ services:
         value: http://smartsearchhub-nodejs:5001
 
   # 4. React Frontend Static Site
-  - type: static
+  - type: web
     name: smartsearchhub-frontend
+    runtime: static
     rootDir: DSEDBD_group_project
     buildCommand: npm install && npm run build
     staticPublishPath: dist
