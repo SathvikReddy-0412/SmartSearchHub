@@ -14,7 +14,7 @@
     <name>platform</name>
     <description>Multi-Category Search and Filter Platform</description>
     <properties>
-        <java.version>17</java.version>
+        <java.version>21</java.version>
     </properties>
     <dependencies>
         <dependency>
