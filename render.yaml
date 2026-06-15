@@ -1,0 +1,79 @@
+databases:
+  - name: smartsearchhub-db
+    databaseName: smartsearchhub
+    user: postgres
+    plan: free
+
+services:
+  # 1. Spring Boot Backend Service (using Dockerfile)
+  - type: web
+    name: smartsearchhub-backend
+    runtime: docker
+    rootDir: backend
+    plan: free
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: DB_HOST
+        fromDatabase:
+          name: smartsearchhub-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: smartsearchhub-db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: smartsearchhub-db
+          property: database
+      - key: SPRING_DATASOURCE_URL
+        value: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}
+      - key: SPRING_DATASOURCE_USERNAME
+        fromDatabase:
+          name: smartsearchhub-db
+          property: user
+      - key: SPRING_DATASOURCE_PASSWORD
+        fromDatabase:
+          name: smartsearchhub-db
+          property: password
+
+  # 2. Node.js Analytics Backend Service
+  - type: web
+    name: smartsearchhub-nodejs
+    runtime: node
+    rootDir: Nodejs
+    buildCommand: npm install
+    startCommand: npm start
+    plan: free
+    envVars:
+      - key: PORT
+        value: 5001
+      - key: MONGO_URI
+        sync: false  # You will be prompted to paste your MongoDB Atlas connection URI
+
+  # 3. FastAPI Gateway Service
+  - type: web
+    name: smartsearchhub-gateway
+    runtime: python
+    rootDir: gateway
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    plan: free
+    envVars:
+      - key: PORT
+        value: 8000
+      - key: SPRING_BACKEND_URL
+        value: http://smartsearchhub-backend:8080
+      - key: NODE_JS_URL
+        value: http://smartsearchhub-nodejs:5001
+
+  # 4. React Frontend Static Site
+  - type: static
+    name: smartsearchhub-frontend
+    runtime: static
+    rootDir: DSEDBD_group_project
+    buildCommand: npm install && npm run build
+    publishDir: dist
+    envVars:
+      - key: VITE_API_URL
+        sync: false  # You will be prompted to input your FastAPI Gateway public URL (e.g. https://smartsearchhub-gateway.onrender.com/api)

@@ -5,7 +5,9 @@ from typing import List, Optional
 
 router = APIRouter()
 
-SPRING_BOOT_URL = "http://localhost:8080"
+import os
+
+SPRING_BOOT_URL = os.getenv("SPRING_BACKEND_URL", "http://localhost:8080")
 
 
 class SemanticSearchRequest(BaseModel):

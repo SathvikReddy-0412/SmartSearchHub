@@ -9,7 +9,9 @@ from models.schemas import (
 
 router = APIRouter()
 
-SPRING_BOOT_URL = "http://localhost:8080"
+import os
+
+SPRING_BOOT_URL = os.getenv("SPRING_BACKEND_URL", "http://localhost:8080")
 
 
 def get_forward_headers(request: Request):
