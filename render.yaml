@@ -67,11 +67,12 @@ services:
         value: http://smartsearchhub-nodejs:5001
 
   # 4. React Frontend Static Site
-  - type: static
+  - type: web
     name: smartsearchhub-frontend
+    runtime: static
     rootDir: DSEDBD_group_project
     buildCommand: npm install && npm run build
-    publishDir: dist
+    staticPublishPath: dist
     envVars:
       - key: VITE_API_URL
         value: http://localhost:8001/api # Will be replaced dynamically in Render dashboard with Gateway URL + /api
