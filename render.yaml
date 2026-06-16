@@ -63,12 +63,26 @@ services:
     envVars:
       - key: PYTHON_VERSION
         value: 3.10.13
-      - key: SPRING_BOOT_URL
-        value: https://smartsearchhub-backend.onrender.com
-      - key: SPRING_BACKEND_URL
-        value: https://smartsearchhub-backend.onrender.com
-      - key: NODE_JS_URL
-        value: https://smartsearchhub-nodejs.onrender.com
+      - key: SPRING_BOOT_HOST
+        fromService:
+          type: web
+          name: smartsearchhub-backend
+          property: host
+      - key: SPRING_BOOT_PORT
+        fromService:
+          type: web
+          name: smartsearchhub-backend
+          property: port
+      - key: NODE_JS_HOST
+        fromService:
+          type: web
+          name: smartsearchhub-nodejs
+          property: host
+      - key: NODE_JS_PORT
+        fromService:
+          type: web
+          name: smartsearchhub-nodejs
+          property: port
 
   # 4. React Frontend Static Site
   - type: static
